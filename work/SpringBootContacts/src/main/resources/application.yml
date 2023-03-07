@@ -1,0 +1,4 @@
+spring:
+  datasource:
+    name: contactInputcloud
+    generate-unique-name: false

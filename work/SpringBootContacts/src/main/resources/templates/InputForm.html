@@ -1,0 +1,55 @@
+<!-- tag::allButValidation[] -->
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>ContactInput Cloud</title>
+    <link rel="stylesheet" th:href="@{/styles.css}" />
+</head>
+
+<body>
+
+<form method="POST" th:object="${contactInput}">
+    <h1>Spring Boot Contacts</h1>
+
+
+
+    <label for="FirstName">FirstName:</label>
+    <input type="text" th:field="*{FirstName}"/>
+    <!-- end::allButValidation[] -->
+    <span class="validationError"
+          th:if="${#fields.hasErrors('FirstName')}"
+          th:errors="*{FirstName}">Name Error</span>
+    <br/>
+
+    <label for="LastName">LastName:</label>
+    <input type="text" th:field="*{LastName}"/>
+    <span class="validationError"
+          th:if="${#fields.hasErrors('LastName')}"
+          th:errors="*{LastName}">Name Error</span>
+    <br/>
+
+    <label for="Phone">Phone #:</label>
+    <input type="text" th:field="*{Phone}"/>
+    <span class="validationError"
+          th:if="${#fields.hasErrors('Phone')}"
+          th:errors="*{Phone}">Phone Num Error</span>
+    <br/>
+
+    <label for="Email">Email: </label>
+    <input type="text" th:field="*{Email}"/>
+    <span class="validationError"
+          th:if="${#fields.hasErrors('Email')}"
+          th:errors="*{Email}">Email Num Error</span>
+    <br/>
+
+    <input type="submit" value="Submit"/>
+</form>
+<h3>ContactInputList:</h3>
+<ul>
+    <li th:each="ContactInput : ${contactInputList.getContacts()}">
+        <span th:text="${ContactInput.getFirstName()+ContactInput.getLastName()+' : '+ContactInput.getPhone()+'  '+ContactInput.getEmail()}">name</span>
+    </li>
+</ul>
+</body>
+</html>
